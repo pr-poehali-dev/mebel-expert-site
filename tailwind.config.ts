@@ -29,15 +29,15 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				gold: {
-					DEFAULT: '#C9A96E',
-					light: '#E8D5A3',
-					dark: '#9A7A45',
+					DEFAULT: '#B8913A',
+					light: '#D4A853',
+					dark: '#8A6A22',
 				},
 				dark: {
-					DEFAULT: '#0D0D0D',
-					100: '#1A1A1A',
-					200: '#252525',
-					300: '#333333',
+					DEFAULT: '#F7F3EC',
+					100: '#F0EAE0',
+					200: '#E8E0D2',
+					300: '#DDD3C2',
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',

@@ -111,10 +111,10 @@ export default function Index() {
   };
 
   return (
-    <div className="bg-dark text-foreground min-h-screen font-montserrat overflow-x-hidden">
+    <div className="bg-background text-foreground min-h-screen font-montserrat overflow-x-hidden">
 
       {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-dark/90 backdrop-blur-sm border-b border-border">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="font-cormorant text-2xl text-gold font-medium tracking-widest">
             МЕБЕЛЕКС
@@ -140,7 +140,7 @@ export default function Index() {
           </div>
           <button
             onClick={() => scrollTo("contact")}
-            className="hidden md:block bg-gold text-dark px-5 py-2 text-xs tracking-widest uppercase font-medium hover:bg-gold-light transition-colors duration-300"
+            className="hidden md:block bg-gold text-white px-5 py-2 text-xs tracking-widest uppercase font-medium hover:bg-gold-light transition-colors duration-300"
           >
             Заказать
           </button>
@@ -149,7 +149,7 @@ export default function Index() {
           </button>
         </div>
         {menuOpen && (
-          <div className="md:hidden bg-dark-100 border-t border-border px-6 py-4 flex flex-col gap-4">
+          <div className="md:hidden bg-dark border-t border-border px-6 py-4 flex flex-col gap-4">
             {[
               ["portfolio", "Портфолио"],
               ["process", "Процесс"],
@@ -169,7 +169,7 @@ export default function Index() {
             ))}
             <button
               onClick={() => scrollTo("contact")}
-              className="bg-gold text-dark px-5 py-3 text-xs tracking-widest uppercase font-medium"
+              className="bg-gold text-white px-5 py-3 text-xs tracking-widest uppercase font-medium"
             >
               Заказать
             </button>
@@ -194,7 +194,7 @@ export default function Index() {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${HERO_IMAGE})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-dark/60 to-dark" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
         <div ref={heroRef} className="section-fade relative z-10 max-w-4xl mx-auto px-6 text-center">
           <p className="text-gold text-xs tracking-[0.4em] uppercase mb-6 font-montserrat">
             Производство мебели с 2008 года
@@ -239,7 +239,7 @@ export default function Index() {
       </section>
 
       {/* ADVANTAGES */}
-      <section className="py-20 bg-dark-100">
+      <section className="py-20 bg-dark">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border">
             {[
@@ -248,9 +248,9 @@ export default function Index() {
               { icon: "Award", title: "Гарантия 3 года", desc: "На всю продукцию и монтажные работы" },
               { icon: "Truck", title: "Доставка и монтаж", desc: "По Москве, МО и всей России" },
             ].map((item) => (
-              <div key={item.title} className="bg-dark-100 p-8 flex flex-col gap-3 hover:bg-dark-200 transition-colors duration-300 group">
+              <div key={item.title} className="bg-dark p-8 flex flex-col gap-3 hover:bg-dark-100 transition-colors duration-300 group">
                 <Icon name={item.icon} size={28} className="text-gold group-hover:scale-110 transition-transform duration-300" />
-                <h3 className="font-montserrat text-sm font-semibold text-white tracking-wide">{item.title}</h3>
+                <h3 className="font-montserrat text-sm font-semibold text-foreground tracking-wide">{item.title}</h3>
                 <p className="text-muted-foreground text-xs leading-relaxed">{item.desc}</p>
               </div>
             ))}
@@ -259,7 +259,7 @@ export default function Index() {
       </section>
 
       {/* PORTFOLIO */}
-      <section id="portfolio" className="py-24 bg-dark">
+      <section id="portfolio" className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-6">
           <div ref={portfolioRef} className="section-fade">
             <SectionTitle label="Наши работы" title="Портфолио проектов" />
@@ -270,7 +270,7 @@ export default function Index() {
                   onClick={() => setActiveCategory(cat)}
                   className={`px-5 py-2 text-xs tracking-widest uppercase transition-all duration-300 ${
                     activeCategory === cat
-                      ? "bg-gold text-dark font-semibold"
+                      ? "bg-gold text-white font-semibold"
                       : "border border-border text-muted-foreground hover:border-gold hover:text-gold"
                   }`}
                 >
@@ -280,7 +280,7 @@ export default function Index() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
               {filtered.map((item) => (
-                <div key={item.id} className="group relative overflow-hidden bg-dark-100 cursor-pointer">
+                <div key={item.id} className="group relative overflow-hidden bg-dark cursor-pointer">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
                       src={item.img}
@@ -288,7 +288,7 @@ export default function Index() {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                     <p className="text-gold text-xs tracking-widest uppercase mb-1">{item.category}</p>
                     <h3 className="text-white font-cormorant text-2xl font-light mb-2">{item.title}</h3>
@@ -298,7 +298,7 @@ export default function Index() {
                   </div>
                   <div className="p-5 group-hover:opacity-0 transition-opacity duration-300">
                     <p className="text-gold text-xs tracking-widest uppercase mb-1">{item.category}</p>
-                    <h3 className="text-white font-cormorant text-xl font-light">{item.title}</h3>
+                    <h3 className="text-foreground font-cormorant text-xl font-light">{item.title}</h3>
                   </div>
                 </div>
               ))}
@@ -308,7 +308,7 @@ export default function Index() {
       </section>
 
       {/* PROCESS */}
-      <section id="process" className="py-24 bg-dark-100">
+      <section id="process" className="py-24 bg-dark">
         <div className="max-w-7xl mx-auto px-6">
           <div ref={processRef} className="section-fade">
             <SectionTitle label="Как мы работаем" title="Процесс сотрудничества" />
@@ -318,12 +318,12 @@ export default function Index() {
                 {PROCESS_STEPS.map((step, i) => (
                   <div key={step.num} className="relative flex flex-col gap-4">
                     <div className="flex flex-col items-start md:items-center">
-                      <div className="w-24 h-24 border border-gold/30 flex items-center justify-center bg-dark">
-                        <span className="font-cormorant text-4xl text-gold/40 font-light">{step.num}</span>
+                      <div className="w-24 h-24 border border-gold/30 flex items-center justify-center bg-background">
+                        <span className="font-cormorant text-4xl text-gold/60 font-light">{step.num}</span>
                       </div>
                     </div>
                     <div className="md:text-center">
-                      <h3 className="text-white font-montserrat text-sm font-semibold tracking-wide mb-2">{step.title}</h3>
+                      <h3 className="text-foreground font-montserrat text-sm font-semibold tracking-wide mb-2">{step.title}</h3>
                       <p className="text-muted-foreground text-xs leading-relaxed">{step.desc}</p>
                     </div>
                     {i < PROCESS_STEPS.length - 1 && (
@@ -333,15 +333,15 @@ export default function Index() {
                 ))}
               </div>
             </div>
-            <div className="mt-16 bg-dark border border-gold/20 p-8 md:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="mt-16 bg-gold/8 border border-gold/25 p-8 md:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <div>
                 <p className="text-gold text-xs tracking-[0.3em] uppercase mb-2">Специальное предложение</p>
-                <h3 className="font-cormorant text-3xl text-white font-light">Бесплатная 3D-визуализация</h3>
+                <h3 className="font-cormorant text-3xl text-foreground font-light">Бесплатная 3D-визуализация</h3>
                 <p className="text-muted-foreground text-sm mt-2">при заказе на сумму от 150 000 ₽</p>
               </div>
               <button
                 onClick={() => scrollTo("contact")}
-                className="bg-gold text-dark px-8 py-4 text-xs tracking-[0.2em] uppercase font-semibold hover:bg-gold-light transition-all duration-300 whitespace-nowrap"
+                className="bg-gold text-white px-8 py-4 text-xs tracking-[0.2em] uppercase font-semibold hover:bg-gold-light transition-all duration-300 whitespace-nowrap"
               >
                 Получить предложение
               </button>
@@ -351,7 +351,7 @@ export default function Index() {
       </section>
 
       {/* MATERIALS */}
-      <section id="materials" className="py-24 bg-dark">
+      <section id="materials" className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-6">
           <div ref={materialsRef} className="section-fade">
             <div className="grid md:grid-cols-2 gap-16 items-start">
@@ -366,12 +366,12 @@ export default function Index() {
               </div>
               <div className="grid grid-cols-1 gap-px bg-border">
                 {MATERIALS.map((mat) => (
-                  <div key={mat.title} className="bg-dark p-6 flex gap-5 items-start hover:bg-dark-100 transition-colors duration-300 group">
+                  <div key={mat.title} className="bg-background p-6 flex gap-5 items-start hover:bg-dark transition-colors duration-300 group">
                     <div className="mt-1 shrink-0">
                       <Icon name={mat.icon} size={22} className="text-gold group-hover:scale-110 transition-transform duration-300" />
                     </div>
                     <div>
-                      <h3 className="text-white text-sm font-semibold tracking-wide mb-1">{mat.title}</h3>
+                      <h3 className="text-foreground text-sm font-semibold tracking-wide mb-1">{mat.title}</h3>
                       <p className="text-muted-foreground text-xs leading-relaxed">{mat.desc}</p>
                     </div>
                   </div>
@@ -383,13 +383,13 @@ export default function Index() {
       </section>
 
       {/* REVIEWS */}
-      <section id="reviews" className="py-24 bg-dark-100">
+      <section id="reviews" className="py-24 bg-dark">
         <div className="max-w-7xl mx-auto px-6">
           <div ref={reviewsRef} className="section-fade">
             <SectionTitle label="Что говорят клиенты" title="Отзывы" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
               {REVIEWS.map((review, i) => (
-                <div key={i} className="bg-dark-100 p-8 hover:bg-dark-200 transition-colors duration-300">
+                <div key={i} className="bg-dark p-8 hover:bg-dark-100 transition-colors duration-300">
                   <div className="flex gap-1 mb-4">
                     {Array.from({ length: review.rating }).map((_, j) => (
                       <span key={j} className="text-gold text-sm">★</span>
@@ -400,7 +400,7 @@ export default function Index() {
                   </p>
                   <div className="flex items-center justify-between border-t border-border pt-4">
                     <div>
-                      <p className="text-white text-sm font-semibold">{review.name}</p>
+                      <p className="text-foreground text-sm font-semibold">{review.name}</p>
                       <p className="text-muted-foreground text-xs">{review.city}</p>
                     </div>
                     <p className="text-gold text-xs tracking-widest">{review.project}</p>
@@ -413,7 +413,7 @@ export default function Index() {
       </section>
 
       {/* PROMO */}
-      <section id="promo" className="py-24 bg-dark">
+      <section id="promo" className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-6">
           <div ref={promoRef} className="section-fade">
             <SectionTitle label="Актуальные предложения" title="Акции и скидки" />
@@ -443,16 +443,16 @@ export default function Index() {
               ].map((promo, i) => (
                 <div
                   key={i}
-                  className={`p-8 flex flex-col gap-4 ${promo.highlight ? "bg-gold/10 border-l-2 border-gold" : "bg-dark-100"}`}
+                  className={`p-8 flex flex-col gap-4 ${promo.highlight ? "bg-gold/10 border-l-2 border-gold" : "bg-dark"}`}
                 >
                   <span className="text-gold text-xs tracking-[0.2em] uppercase">{promo.tag}</span>
-                  <h3 className="font-cormorant text-3xl text-white font-light">{promo.title}</h3>
+                  <h3 className="font-cormorant text-3xl text-foreground font-light">{promo.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed flex-1">{promo.desc}</p>
                   <button
                     onClick={() => scrollTo("contact")}
                     className={`px-6 py-3 text-xs tracking-widest uppercase font-medium transition-all duration-300 ${
                       promo.highlight
-                        ? "bg-gold text-dark hover:bg-gold-light"
+                        ? "bg-gold text-white hover:bg-gold-light"
                         : "border border-gold/40 text-gold hover:border-gold hover:bg-gold/10"
                     }`}
                   >
@@ -466,18 +466,18 @@ export default function Index() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="py-24 bg-dark-100">
+      <section id="faq" className="py-24 bg-dark">
         <div className="max-w-4xl mx-auto px-6">
           <div ref={faqRef} className="section-fade">
             <SectionTitle label="Вопросы и ответы" title="Часто спрашивают" />
             <div className="space-y-px">
               {FAQ_ITEMS.map((item, i) => (
-                <div key={i} className="bg-dark border border-border overflow-hidden">
+                <div key={i} className="bg-background border border-border overflow-hidden">
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full flex items-center justify-between p-6 text-left hover:bg-dark-100 transition-colors duration-300"
+                    className="w-full flex items-center justify-between p-6 text-left hover:bg-dark transition-colors duration-300"
                   >
-                    <span className="text-white text-sm font-medium tracking-wide pr-4">{item.q}</span>
+                    <span className="text-foreground text-sm font-medium tracking-wide pr-4">{item.q}</span>
                     <Icon
                       name={openFaq === i ? "Minus" : "Plus"}
                       size={18}
@@ -497,7 +497,7 @@ export default function Index() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-24 bg-dark">
+      <section id="contact" className="py-24 bg-background">
         <div className="max-w-7xl mx-auto px-6">
           <div ref={contactRef} className="section-fade">
             <div className="grid md:grid-cols-2 gap-16">
@@ -522,7 +522,7 @@ export default function Index() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Александр"
-                      className="w-full bg-dark-100 border border-border text-foreground px-4 py-3 text-sm focus:outline-none focus:border-gold transition-colors placeholder:text-muted-foreground/50"
+                      className="w-full bg-dark border border-border text-foreground px-4 py-3 text-sm focus:outline-none focus:border-gold transition-colors placeholder:text-muted-foreground/50"
                     />
                   </div>
                   <div>
@@ -533,7 +533,7 @@ export default function Index() {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+7 (999) 000-00-00"
-                      className="w-full bg-dark-100 border border-border text-foreground px-4 py-3 text-sm focus:outline-none focus:border-gold transition-colors placeholder:text-muted-foreground/50"
+                      className="w-full bg-dark border border-border text-foreground px-4 py-3 text-sm focus:outline-none focus:border-gold transition-colors placeholder:text-muted-foreground/50"
                     />
                   </div>
                   <div>
@@ -543,12 +543,12 @@ export default function Index() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Расскажите о вашем проекте: что хотите заказать, размеры, пожелания..."
-                      className="w-full bg-dark-100 border border-border text-foreground px-4 py-3 text-sm focus:outline-none focus:border-gold transition-colors resize-none placeholder:text-muted-foreground/50"
+                      className="w-full bg-dark border border-border text-foreground px-4 py-3 text-sm focus:outline-none focus:border-gold transition-colors resize-none placeholder:text-muted-foreground/50"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="bg-gold text-dark px-8 py-4 text-xs tracking-[0.2em] uppercase font-semibold hover:bg-gold-light transition-all duration-300 hover:shadow-[0_0_30px_rgba(201,169,110,0.4)]"
+                    className="bg-gold text-white px-8 py-4 text-xs tracking-[0.2em] uppercase font-semibold hover:bg-gold-light transition-all duration-300 hover:shadow-[0_0_30px_rgba(184,145,58,0.4)]"
                   >
                     Отправить заявку
                   </button>
@@ -573,7 +573,7 @@ export default function Index() {
                         </div>
                         <div>
                           <p className="text-muted-foreground text-xs tracking-widest uppercase mb-1">{item.label}</p>
-                          <p className="text-white text-sm">{item.value}</p>
+                          <p className="text-foreground text-sm">{item.value}</p>
                         </div>
                       </div>
                     ))}
@@ -598,8 +598,8 @@ export default function Index() {
                     ))}
                   </div>
                 </div>
-                <div className="bg-dark-100 border border-border p-6">
-                  <p className="text-white font-cormorant text-2xl font-light mb-2">Онлайн-консультант</p>
+                <div className="bg-dark border border-border p-6">
+                  <p className="text-foreground font-cormorant text-2xl font-light mb-2">Онлайн-консультант</p>
                   <p className="text-muted-foreground text-xs mb-4">Ответим на все вопросы прямо сейчас</p>
                   <button className="flex items-center gap-2 text-gold text-xs tracking-widest uppercase hover:text-gold-light transition-colors">
                     <Icon name="MessageSquare" size={16} />
@@ -613,7 +613,7 @@ export default function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-dark-100 border-t border-border py-10">
+      <footer className="bg-dark border-t border-border py-10">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="font-cormorant text-2xl text-gold font-medium tracking-widest">МЕБЕЛЕКС</div>
           <p className="text-muted-foreground text-xs">© 2024 Мебелекс. Все права защищены.</p>
