@@ -1,71 +1,64 @@
 import { useEffect, useRef, useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const IMG_HERO = "https://cdn.poehali.dev/projects/df75d54c-3f10-415f-a50d-a4a74369f6fb/files/dde5707f-5222-4afe-99d4-9773cb459f92.jpg";
-const IMG_KITCHEN = "https://cdn.poehali.dev/projects/df75d54c-3f10-415f-a50d-a4a74369f6fb/files/3218dcfc-81eb-4271-b2b2-fc97be24a0e6.jpg";
-const IMG_LIVING = "https://cdn.poehali.dev/projects/df75d54c-3f10-415f-a50d-a4a74369f6fb/files/2ed6f23e-6d15-464f-a0cc-6404bcd1207b.jpg";
+const IMG_HERO    = "https://cdn.poehali.dev/projects/df75d54c-3f10-415f-a50d-a4a74369f6fb/files/6c1e89a3-9407-40df-9f88-3c0b681e162b.jpg";
+const IMG_KITCHEN = "https://cdn.poehali.dev/projects/df75d54c-3f10-415f-a50d-a4a74369f6fb/files/2a41059c-25e8-4591-9072-285a3e4562fb.jpg";
+const IMG_BEDROOM = "https://cdn.poehali.dev/projects/df75d54c-3f10-415f-a50d-a4a74369f6fb/files/8c784e79-e2f3-41a1-aa02-41a8a574b4d8.jpg";
+const IMG_LIVING  = "https://cdn.poehali.dev/projects/df75d54c-3f10-415f-a50d-a4a74369f6fb/files/2ed6f23e-6d15-464f-a0cc-6404bcd1207b.jpg";
 
 const NAV_LINKS = [
-  ["portfolio", "Портфолио"],
-  ["process", "Процесс"],
-  ["materials", "Материалы"],
-  ["reviews", "Отзывы"],
-  ["promo", "Акции"],
-  ["faq", "FAQ"],
-  ["contact", "Контакты"],
+  ["portfolio","Портфолио"],["process","Процесс"],["materials","Материалы"],
+  ["reviews","Отзывы"],["promo","Акции"],["faq","FAQ"],["contact","Контакты"],
 ];
 
 const TICKER = [
-  "Скидка 15% на кухни — февраль 2026",
-  "Бесплатный выезд замерщика",
-  "Рассрочка 0% на 12 месяцев",
-  "Изготовление от 14 дней",
-  "Немецкое оборудование",
-  "500+ реализованных проектов",
+  "Скидка 15% на кухни — февраль 2026","Бесплатный замер по Москве и МО",
+  "Рассрочка 0% · 12 месяцев","Изготовление от 14 дней",
+  "Немецкое ЧПУ-оборудование","500+ реализованных проектов",
 ];
 
 const PORTFOLIO = [
-  { id: 1, cat: "Кухни", title: "Кухня Loft White", sub: "Матовый МДФ · Интегрированная техника · 4.2 м", price: "от 380 000 ₽", img: IMG_KITCHEN },
-  { id: 2, cat: "Гостиные", title: "Гостиная Scandia", sub: "Шпон дуба · Плавающие полки · 5.4 м", price: "от 290 000 ₽", img: IMG_LIVING },
-  { id: 3, cat: "Гостиные", title: "Шоурум-интерьер", sub: "Комплексное решение · 3 зоны", price: "от 550 000 ₽", img: IMG_HERO },
-  { id: 4, cat: "Кухни", title: "Кухня Mono", sub: "Акрил белый · Остров · 3.6 × 2.8 м", price: "от 310 000 ₽", img: IMG_KITCHEN },
-  { id: 5, cat: "Спальни", title: "Спальня Nordic", sub: "Массив ясень · Встроенные ниши", price: "от 220 000 ₽", img: IMG_LIVING },
-  { id: 6, cat: "Шкафы", title: "Гардеробная Room", sub: "ЛДСП · Зеркало · 3.6 м", price: "от 110 000 ₽", img: IMG_HERO },
+  { id:1, cat:"Кухни",    title:"Кухня Loft White",  sub:"Матовый МДФ · Интеграция техники · 4.2 м", price:"от 380 000 ₽", img:IMG_KITCHEN },
+  { id:2, cat:"Гостиные", title:"Гостиная Scandia",  sub:"Шпон дуба · Плавающие полки · 5.4 м",      price:"от 290 000 ₽", img:IMG_LIVING  },
+  { id:3, cat:"Спальни",  title:"Спальня Nordic",    sub:"Массив ясень · Встроенные ниши",            price:"от 220 000 ₽", img:IMG_BEDROOM },
+  { id:4, cat:"Кухни",    title:"Кухня Mono",        sub:"Акрил белый · Остров · 3.6 × 2.8 м",       price:"от 310 000 ₽", img:IMG_KITCHEN },
+  { id:5, cat:"Гостиные", title:"Шоурум-интерьер",   sub:"Комплексное решение · 3 зоны",             price:"от 550 000 ₽", img:IMG_HERO    },
+  { id:6, cat:"Шкафы",    title:"Гардеробная Room",  sub:"ЛДСП · Зеркало · 3.6 м",                  price:"от 110 000 ₽", img:IMG_BEDROOM },
 ];
 
-const CATS = ["Все", "Кухни", "Гостиные", "Спальни", "Шкафы"];
+const CATS = ["Все","Кухни","Гостиные","Спальни","Шкафы"];
 
 const STEPS = [
-  { n: "1", icon: "Ruler", title: "Замер", desc: "Бесплатный выезд специалиста. Снимаем точные размеры, обсуждаем ваши пожелания на месте." },
-  { n: "2", icon: "PenTool", title: "Проект", desc: "Создаём 3D-визуализацию. Согласуем материалы, цвета и конструкцию до начала производства." },
-  { n: "3", icon: "Settings", title: "Производство", desc: "Изготавливаем на ЧПУ-оборудовании с точностью 0.1 мм. Контроль качества на каждом этапе." },
-  { n: "4", icon: "Truck", title: "Доставка", desc: "Доставляем по Москве, МО и регионам в согласованный день." },
-  { n: "5", icon: "Wrench", title: "Монтаж", desc: "Профессиональный монтаж с гарантией. Уберём за собой — оставим только идеальный результат." },
+  { n:"1", icon:"Ruler",    title:"Замер",       desc:"Бесплатный выезд специалиста. Точные размеры и пожелания — на месте." },
+  { n:"2", icon:"PenTool",  title:"Проект",      desc:"3D-визуализация. Согласуем материалы и конструкцию до производства." },
+  { n:"3", icon:"Settings", title:"Производство",desc:"ЧПУ-оборудование, точность 0.1 мм. Контроль качества на каждом этапе." },
+  { n:"4", icon:"Truck",    title:"Доставка",    desc:"По Москве, МО и регионам в согласованный день и время." },
+  { n:"5", icon:"Wrench",   title:"Монтаж",      desc:"Профессиональная сборка с гарантией. После — порядок и чистота." },
 ];
 
 const MATERIALS = [
-  { icon: "Layers", title: "МДФ и ЛДСП", desc: "Сотни цветов и текстур. Влагостойкие варианты для кухни и ванной." },
-  { icon: "TreePine", title: "Массив и шпон", desc: "Дуб, ясень, орех. Живая текстура дерева, которая становится красивее с годами." },
-  { icon: "Sparkles", title: "Акрил и стекло", desc: "Глянцевые поверхности, стойкие к царапинам. Идеальны для современных кухонь." },
-  { icon: "Shield", title: "Фурнитура Blum", desc: "Австрийские петли и направляющие с 30-летней гарантией. Тихое мягкое движение." },
-  { icon: "Cpu", title: "ЧПУ-производство", desc: "Немецкие станки с точностью до 0.1 мм обеспечивают идеальную подгонку деталей." },
-  { icon: "Zap", title: "Интеграция техники", desc: "Встраиваем любую технику: духовки, холодильники, вытяжки, стиральные машины." },
+  { icon:"Layers",   title:"МДФ и ЛДСП",      desc:"Сотни цветов и текстур. Влагостойкие варианты для кухни." },
+  { icon:"TreePine", title:"Массив и шпон",   desc:"Дуб, ясень, орех. Текстура, которая красивеет с годами." },
+  { icon:"Sparkles", title:"Акрил и стекло",  desc:"Глянцевые поверхности, стойкие к царапинам." },
+  { icon:"Shield",   title:"Фурнитура Blum",  desc:"30-летняя гарантия. Тихое и мягкое движение каждый раз." },
+  { icon:"Cpu",      title:"ЧПУ-производство",desc:"Немецкие станки, точность 0.1 мм — идеальная подгонка деталей." },
+  { icon:"Zap",      title:"Встройка техники",desc:"Духовки, холодильники, вытяжки, стиральные машины под заказ." },
 ];
 
 const REVIEWS = [
-  { name: "Анна М.", city: "Москва", stars: 5, text: "Заказала кухню под нестандартный проём. Всё сделали точно в срок, монтаж — идеальный. Сразу видно профессионалов.", tag: "Кухня 4.2 м" },
-  { name: "Дмитрий К.", city: "Красногорск", stars: 5, text: "Делали гостиную с большим книжным шкафом. Трижды вносил правки в проект — терпеливо переделывали без доплат.", tag: "Гостиная" },
-  { name: "Елена В.", city: "Подольск", stars: 5, text: "Гардеробная во всю стену — просто мечта! Спустя полтора года ни одной скрипки, ни одной проблемы.", tag: "Гардеробная 3.6 м" },
-  { name: "Игорь С.", city: "Химки", stars: 5, text: "Угловая кухня с островом. Дизайнер учёл всё: розетки, подсветку, вентиляцию. Теперь кухня — любимое место в доме.", tag: "Кухня с островом" },
+  { name:"Анна М.", city:"Москва",     stars:5, text:"Кухня под нестандартный проём. Всё точно в срок, монтаж — безупречный. Сразу видно профессионалов.", tag:"Кухня 4.2 м" },
+  { name:"Дмитрий К.", city:"Красногорск", stars:5, text:"Гостиная с книжным шкафом. Трижды менял детали — всё терпеливо переделывали без доплат.",    tag:"Гостиная" },
+  { name:"Елена В.", city:"Подольск",  stars:5, text:"Гардеробная во всю стену — мечта. Полтора года — ни скрипа, ни зазора.",                          tag:"Гардеробная 3.6 м" },
+  { name:"Игорь С.", city:"Химки",     stars:5, text:"Угловая кухня с островом. Дизайнер учёл розетки, подсветку, вентиляцию. Теперь кухня — любимое место.", tag:"Кухня с островом" },
 ];
 
 const FAQ = [
-  { q: "Сколько стоит выезд замерщика?", a: "Замер бесплатный по всей Москве и Подмосковью. Для регионов — уточняйте у менеджера." },
-  { q: "Сроки изготовления?", a: "От 14 до 30 рабочих дней в зависимости от сложности. Точный срок фиксируем в договоре." },
-  { q: "Делаете нестандартные размеры?", a: "Именно для этого мы и существуем. Производим мебель под любые размеры и конфигурации." },
-  { q: "Какая гарантия?", a: "3 года на конструкцию, 1 год на фурнитуру. Фурнитура Blum — 30 лет заводской гарантии." },
-  { q: "Есть рассрочка?", a: "Да — 0% на 6 и 12 месяцев. Первый взнос от 50%. Оформляем прямо у нас." },
-  { q: "Как согласовывается дизайн?", a: "Дизайнер делает 3D-модель, вы её утверждаете. Производство начинается только после вашего «окей»." },
+  { q:"Сколько стоит выезд замерщика?",       a:"Замер бесплатный по всей Москве и Подмосковью. Для регионов — уточняйте у менеджера." },
+  { q:"Какие сроки изготовления?",             a:"От 14 до 30 рабочих дней. Точный срок фиксируем в договоре." },
+  { q:"Работаете с нестандартными размерами?", a:"Именно для этого мы и существуем — производим под любые размеры и конфигурации." },
+  { q:"Какая гарантия на мебель?",             a:"3 года на конструкцию, 1 год на фурнитуру. Blum — 30 лет заводской гарантии." },
+  { q:"Есть рассрочка?",                       a:"0% на 6 и 12 месяцев. Первый взнос от 50%. Оформляем сразу у нас." },
+  { q:"Как согласовывается дизайн?",           a:"Дизайнер делает 3D-модель, вы её утверждаете. Производство — только после вашего «окей»." },
 ];
 
 function useFade() {
@@ -81,37 +74,27 @@ function useFade() {
   return ref;
 }
 
-function Tag({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-block text-xs font-inter tracking-widest uppercase text-ink-light mb-3">
-      {children}
-    </span>
-  );
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return <p className="text-terra text-xs font-inter uppercase tracking-[0.2em] mb-2">{children}</p>;
 }
 
-function H2({ children }: { children: React.ReactNode }) {
+function H2({ children, center = false }: { children: React.ReactNode; center?: boolean }) {
   return (
-    <h2 className="text-3xl md:text-4xl font-golos font-semibold text-ink leading-tight">
+    <h2 className={`text-3xl md:text-4xl font-golos font-bold text-ink leading-tight ${center ? "text-center" : ""}`}>
       {children}
     </h2>
   );
 }
 
 export default function Index() {
-  const [cat, setCat] = useState("Все");
+  const [cat, setCat]         = useState("Все");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [form, setForm] = useState({ name: "", phone: "", msg: "" });
+  const [form, setForm]       = useState({ name:"", phone:"", msg:"" });
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const secHero = useFade();
-  const secAdv = useFade();
-  const secPort = useFade();
-  const secProc = useFade();
-  const secMat = useFade();
-  const secRev = useFade();
-  const secPromo = useFade();
-  const secFaq = useFade();
-  const secCont = useFade();
+  const rHero = useFade(), rAdv = useFade(), rPort = useFade();
+  const rProc = useFade(), rMat = useFade(), rRev  = useFade();
+  const rPromo = useFade(), rFaq = useFade(), rCont = useFade();
 
   const filtered = cat === "Все" ? PORTFOLIO : PORTFOLIO.filter(p => p.cat === cat);
 
@@ -123,16 +106,14 @@ export default function Index() {
   return (
     <div className="bg-background text-ink font-golos min-h-screen overflow-x-hidden">
 
-      {/* ── NAV ── */}
-      <header className="fixed top-0 inset-x-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+      {/* ─── NAV ─── */}
+      <header className="fixed top-0 inset-x-0 z-50 bg-warm-50/95 backdrop-blur-md border-b border-border shadow-sm">
         <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-6">
           <a href="#hero" onClick={e => { e.preventDefault(); go("hero"); }}
-            className="font-golos font-bold text-2xl tracking-tight text-ink shrink-0 leading-none">
+            className="font-golos font-bold text-[1.6rem] tracking-tight text-ink shrink-0 leading-none hover:text-terra transition-colors">
             Мебелекс
           </a>
-
-          {/* Desktop links */}
-          <nav className="hidden md:flex items-center gap-7">
+          <nav className="hidden md:flex items-center gap-6">
             {NAV_LINKS.map(([id, label]) => (
               <button key={id} onClick={() => go(id)}
                 className="text-sm text-ink-soft hover:text-ink transition-colors font-inter">
@@ -140,24 +121,19 @@ export default function Index() {
               </button>
             ))}
           </nav>
-
           <button onClick={() => go("contact")}
             className="hidden md:block shrink-0 bg-ink text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-ink-soft transition-colors shadow-btn">
             Получить расчёт
           </button>
-
           <button className="md:hidden p-2 text-ink" onClick={() => setMenuOpen(!menuOpen)}>
             <Icon name={menuOpen ? "X" : "Menu"} size={22} />
           </button>
         </div>
-
         {menuOpen && (
-          <div className="md:hidden bg-background border-t border-border px-5 py-5 flex flex-col gap-4">
+          <div className="md:hidden bg-warm-50 border-t border-border px-5 py-5 flex flex-col gap-3">
             {NAV_LINKS.map(([id, label]) => (
               <button key={id} onClick={() => go(id)}
-                className="text-sm text-ink-soft hover:text-ink text-left py-1">
-                {label}
-              </button>
+                className="text-sm text-ink-soft hover:text-ink text-left py-1">{label}</button>
             ))}
             <button onClick={() => go("contact")}
               className="bg-ink text-white px-5 py-3 rounded-xl text-sm font-semibold mt-2">
@@ -167,59 +143,53 @@ export default function Index() {
         )}
       </header>
 
-      {/* ── TICKER ── */}
-      <div className="fixed top-16 inset-x-0 z-40 h-8 bg-surface flex items-center overflow-hidden border-b border-border">
+      {/* ─── TICKER ─── */}
+      <div className="fixed top-16 inset-x-0 z-40 h-8 bg-surface-100 border-b border-border flex items-center overflow-hidden">
         <div className="flex animate-slide-left whitespace-nowrap">
           {[...TICKER, ...TICKER].map((t, i) => (
-            <span key={i} className="text-[11px] text-ink-soft uppercase tracking-widest mx-8 font-inter">
-              · {t}
-            </span>
+            <span key={i} className="text-[11px] text-terra uppercase tracking-widest mx-8 font-inter">· {t}</span>
           ))}
         </div>
       </div>
 
-      {/* ── HERO ── */}
-      <section id="hero" className="relative min-h-screen flex items-end overflow-hidden">
-        {/* Full-bleed photo */}
+      {/* ─── HERO ─── */}
+      <section id="hero" className="relative min-h-screen flex items-center overflow-hidden pt-24">
+        {/* Фото на правой половине */}
         <div className="absolute inset-0">
           <img src={IMG_HERO} alt="Мебелекс" className="w-full h-full object-cover object-center" />
-          {/* тёмный низ для текста, прозрачный верх */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-          {/* лёгкий синеватый оттенок для глубины */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/30 to-transparent" />
+          {/* Светлый градиент слева — текст читается, фото видно справа */}
+          <div className="absolute inset-0 bg-gradient-to-r from-warm-50 via-warm-100/90 to-warm-100/20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-warm-50/40 via-transparent to-warm-50/60" />
         </div>
 
-        {/* Контент */}
-        <div ref={secHero} className="section-fade relative z-10 w-full max-w-7xl mx-auto px-5 pb-16 pt-36">
-          <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white/80 text-xs font-inter uppercase tracking-widest px-3 py-1.5 rounded-full mb-6 border border-white/20">
-              <span className="w-1.5 h-1.5 bg-green-400 rounded-full" />
+        <div ref={rHero} className="section-fade relative z-10 w-full max-w-7xl mx-auto px-5 py-20">
+          <div className="max-w-[560px]">
+            <span className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm text-ink-soft text-xs font-inter uppercase tracking-widest px-3 py-1.5 rounded-full mb-6 border border-border shadow-sm">
+              <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
               Производство с 2008 года
             </span>
-            <h1 className="font-golos font-bold text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6">
-              Мебель точно<br />под ваш<br />
-              <span className="text-white/60">интерьер</span>
+            <h1 className="font-golos font-bold text-5xl md:text-6xl lg:text-[4.25rem] text-ink leading-[1.05] mb-5">
+              Мебель<br />по вашему<br />
+              <span className="text-terra">проекту</span>
             </h1>
-            <p className="text-white/70 text-lg font-inter font-light leading-relaxed mb-10 max-w-lg">
-              Проектируем и производим кухни, шкафы, гостиные и спальни по индивидуальным размерам. Точность ЧПУ-станков и опыт 15 лет.
+            <p className="text-ink-soft text-lg font-inter font-light leading-relaxed mb-10 max-w-md">
+              Кухни, шкафы, гостиные и спальни точно по вашим размерам. Современное ЧПУ-производство и 15 лет опыта.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-wrap gap-3">
               <button onClick={() => go("contact")}
-                className="bg-white text-ink px-7 py-4 rounded-xl font-semibold text-sm hover:bg-surface transition-colors shadow-btn">
+                className="bg-ink text-white px-7 py-4 rounded-xl font-semibold text-sm hover:bg-ink-soft transition-colors shadow-btn">
                 Рассчитать стоимость
               </button>
               <button onClick={() => go("portfolio")}
-                className="border border-white/30 bg-white/10 backdrop-blur-sm text-white px-7 py-4 rounded-xl font-semibold text-sm hover:bg-white/20 transition-colors">
+                className="bg-white/80 backdrop-blur-sm border border-border text-ink px-7 py-4 rounded-xl font-semibold text-sm hover:bg-white transition-colors shadow-sm">
                 Смотреть работы
               </button>
             </div>
-
-            {/* Stats */}
-            <div className="flex gap-10 mt-14 pt-8 border-t border-white/20">
-              {[["500+", "проектов"], ["15", "лет опыта"], ["98%", "довольны"]].map(([n, l]) => (
+            <div className="flex gap-10 mt-14 pt-8 border-t border-border/60">
+              {[["500+","проектов"],["15","лет опыта"],["98%","довольны"]].map(([n,l]) => (
                 <div key={l}>
-                  <div className="text-3xl font-golos font-bold text-white">{n}</div>
-                  <div className="text-xs text-white/50 uppercase tracking-wider mt-0.5 font-inter">{l}</div>
+                  <div className="text-3xl font-golos font-bold text-ink">{n}</div>
+                  <div className="text-xs text-ink-light uppercase tracking-wider mt-0.5 font-inter">{l}</div>
                 </div>
               ))}
             </div>
@@ -227,23 +197,23 @@ export default function Index() {
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <Icon name="ChevronDown" size={20} className="text-white/50" />
+          <Icon name="ChevronDown" size={20} className="text-ink-light" />
         </div>
       </section>
 
-      {/* ── ADVANTAGES ── */}
-      <section className="py-16 bg-surface-100">
+      {/* ─── ADVANTAGES ─── */}
+      <section className="py-14 bg-warm-200">
         <div className="max-w-7xl mx-auto px-5">
-          <div ref={secAdv} className="section-fade grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div ref={rAdv} className="section-fade grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { icon: "Ruler", title: "Любой размер", desc: "Производим под ваши точные обмеры" },
-              { icon: "Clock", title: "От 14 дней", desc: "Фиксируем срок в договоре" },
-              { icon: "ShieldCheck", title: "Гарантия 3 года", desc: "На конструкцию и монтаж" },
-              { icon: "Truck", title: "Доставка и монтаж", desc: "Москва, МО и вся Россия" },
+              { icon:"Ruler",       title:"Любой размер",    desc:"Производим под точные обмеры" },
+              { icon:"Clock",       title:"От 14 дней",      desc:"Срок фиксируем в договоре" },
+              { icon:"ShieldCheck", title:"Гарантия 3 года", desc:"На конструкцию и монтаж" },
+              { icon:"Truck",       title:"Доставка·монтаж", desc:"Москва, МО и вся Россия" },
             ].map(item => (
               <div key={item.title} className="bg-white rounded-2xl p-5 shadow-card hover-lift">
-                <div className="w-10 h-10 bg-surface rounded-xl flex items-center justify-center mb-4">
-                  <Icon name={item.icon} size={20} className="text-ink" />
+                <div className="w-10 h-10 bg-surface-100 rounded-xl flex items-center justify-center mb-4">
+                  <Icon name={item.icon} size={20} className="text-terra" />
                 </div>
                 <p className="font-semibold text-sm text-ink mb-1">{item.title}</p>
                 <p className="text-xs text-ink-light leading-relaxed">{item.desc}</p>
@@ -253,38 +223,33 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── PORTFOLIO ── */}
+      {/* ─── PORTFOLIO ─── */}
       <section id="portfolio" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-5">
-          <div ref={secPort} className="section-fade">
+          <div ref={rPort} className="section-fade">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
               <div>
-                <Tag>Наши работы</Tag>
+                <SectionLabel>Наши работы</SectionLabel>
                 <H2>Портфолио проектов</H2>
               </div>
               <div className="flex flex-wrap gap-2">
                 {CATS.map(c => (
                   <button key={c} onClick={() => setCat(c)}
                     className={`px-4 py-2 rounded-xl text-sm font-inter transition-all ${
-                      cat === c
-                        ? "bg-ink text-white shadow-btn"
-                        : "bg-surface text-ink-soft hover:bg-surface-200"
-                    }`}>
-                    {c}
-                  </button>
+                      cat === c ? "bg-ink text-white shadow-btn" : "bg-white border border-border text-ink-soft hover:border-ink-soft"
+                    }`}>{c}</button>
                 ))}
               </div>
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {filtered.map(item => (
-                <div key={item.id} className="group bg-surface rounded-2xl overflow-hidden shadow-card hover-lift cursor-pointer">
+                <div key={item.id} className="group bg-white rounded-2xl overflow-hidden shadow-card hover-lift cursor-pointer">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img src={item.img} alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-5">
-                    <span className="text-[11px] font-inter uppercase tracking-widest text-ink-light">{item.cat}</span>
+                    <span className="text-[11px] font-inter uppercase tracking-widest text-terra">{item.cat}</span>
                     <h3 className="font-golos font-semibold text-base text-ink mt-1 mb-1">{item.title}</h3>
                     <p className="text-xs text-ink-light mb-3 leading-relaxed">{item.sub}</p>
                     <p className="text-sm font-semibold text-ink">{item.price}</p>
@@ -296,20 +261,19 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── PROCESS ── */}
-      <section id="process" className="py-20 bg-surface">
+      {/* ─── PROCESS ─── */}
+      <section id="process" className="py-20 bg-warm-200">
         <div className="max-w-7xl mx-auto px-5">
-          <div ref={secProc} className="section-fade">
+          <div ref={rProc} className="section-fade">
             <div className="text-center mb-14">
-              <Tag>Как мы работаем</Tag>
-              <H2>5 шагов от идеи до результата</H2>
+              <SectionLabel>Как мы работаем</SectionLabel>
+              <H2 center>5 шагов от идеи до результата</H2>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-5">
               {STEPS.map((s, i) => (
-                <div key={s.n} className="relative bg-white rounded-2xl p-6 shadow-card flex flex-col gap-4">
+                <div key={s.n} className="relative bg-white rounded-2xl p-6 shadow-card flex flex-col gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 bg-ink rounded-xl flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 bg-terra rounded-xl flex items-center justify-center shrink-0">
                       <Icon name={s.icon} size={16} className="text-white" />
                     </div>
                     <span className="text-xs text-ink-light font-inter">Шаг {s.n}</span>
@@ -317,23 +281,22 @@ export default function Index() {
                   <h3 className="font-golos font-semibold text-base text-ink">{s.title}</h3>
                   <p className="text-xs text-ink-light leading-relaxed">{s.desc}</p>
                   {i < STEPS.length - 1 && (
-                    <div className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 z-10">
-                      <Icon name="ChevronRight" size={16} className="text-ink-light" />
+                    <div className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full w-6 h-6 items-center justify-center shadow-sm border border-border">
+                      <Icon name="ChevronRight" size={12} className="text-ink-light" />
                     </div>
                   )}
                 </div>
               ))}
             </div>
-
-            {/* CTA banner */}
-            <div className="mt-10 bg-ink rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            {/* CTA Banner */}
+            <div className="mt-10 bg-white rounded-2xl p-8 md:p-10 shadow-card flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-border">
               <div>
-                <p className="text-white/60 text-xs font-inter uppercase tracking-widest mb-2">Специальное предложение</p>
-                <h3 className="text-white font-golos font-semibold text-2xl">Бесплатная 3D-визуализация</h3>
-                <p className="text-white/60 text-sm mt-1">при заказе от 150 000 ₽</p>
+                <p className="text-terra text-xs font-inter uppercase tracking-widest mb-2">Специальное предложение</p>
+                <h3 className="text-ink font-golos font-bold text-2xl">Бесплатная 3D-визуализация</h3>
+                <p className="text-ink-light text-sm mt-1">при заказе от 150 000 ₽</p>
               </div>
               <button onClick={() => go("contact")}
-                className="shrink-0 bg-white text-ink px-7 py-3.5 rounded-xl font-semibold text-sm hover:bg-surface transition-colors">
+                className="shrink-0 bg-ink text-white px-7 py-3.5 rounded-xl font-semibold text-sm hover:bg-ink-soft transition-colors shadow-btn">
                 Получить предложение
               </button>
             </div>
@@ -341,29 +304,29 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── MATERIALS ── */}
+      {/* ─── MATERIALS ─── */}
       <section id="materials" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-5">
-          <div ref={secMat} className="section-fade">
+          <div ref={rMat} className="section-fade">
             <div className="grid md:grid-cols-2 gap-14 items-start">
               <div>
-                <Tag>Из чего делаем</Tag>
+                <SectionLabel>Из чего делаем</SectionLabel>
                 <H2>Материалы и технологии</H2>
                 <p className="text-ink-soft text-base font-inter leading-relaxed mt-4 mb-8">
-                  Используем только сертифицированные материалы. Немецкое ЧПУ-оборудование гарантирует точность до 0.1 мм и идеальную подгонку каждой детали.
+                  Только сертифицированные материалы от проверенных поставщиков. ЧПУ-оборудование гарантирует точность до 0.1 мм и идеальную подгонку.
                 </p>
                 <div className="rounded-2xl overflow-hidden shadow-card">
-                  <img src={IMG_LIVING} alt="Производство" className="w-full aspect-[4/3] object-cover" />
+                  <img src={IMG_LIVING} alt="Материалы" className="w-full aspect-[4/3] object-cover" />
                 </div>
               </div>
-              <div className="grid grid-cols-1 gap-3 mt-8 md:mt-14">
+              <div className="grid gap-3 md:mt-14">
                 {MATERIALS.map(m => (
-                  <div key={m.title} className="flex gap-4 items-start bg-surface rounded-2xl p-5 hover-lift shadow-card">
-                    <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shrink-0 shadow-card">
-                      <Icon name={m.icon} size={18} className="text-ink" />
+                  <div key={m.title} className="flex gap-4 items-start bg-white rounded-2xl p-5 shadow-card hover-lift border border-border/60">
+                    <div className="w-10 h-10 bg-surface-100 rounded-xl flex items-center justify-center shrink-0">
+                      <Icon name={m.icon} size={18} className="text-terra" />
                     </div>
                     <div>
-                      <p className="font-golos font-semibold text-sm text-ink mb-1">{m.title}</p>
+                      <p className="font-golos font-semibold text-sm text-ink mb-0.5">{m.title}</p>
                       <p className="text-xs text-ink-light leading-relaxed">{m.desc}</p>
                     </div>
                   </div>
@@ -374,20 +337,20 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── REVIEWS ── */}
-      <section id="reviews" className="py-20 bg-surface">
+      {/* ─── REVIEWS ─── */}
+      <section id="reviews" className="py-20 bg-warm-200">
         <div className="max-w-7xl mx-auto px-5">
-          <div ref={secRev} className="section-fade">
+          <div ref={rRev} className="section-fade">
             <div className="text-center mb-12">
-              <Tag>Отзывы</Tag>
-              <H2>Что говорят клиенты</H2>
+              <SectionLabel>Отзывы клиентов</SectionLabel>
+              <H2 center>Что говорят о нас</H2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {REVIEWS.map((r, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 shadow-card hover-lift">
+                <div key={i} className="bg-white rounded-2xl p-6 shadow-card hover-lift border border-border/60">
                   <div className="flex gap-0.5 mb-4">
-                    {Array.from({ length: r.stars }).map((_, j) => (
-                      <span key={j} className="text-amber-400 text-sm">★</span>
+                    {Array.from({ length: r.stars }).map((_,j) => (
+                      <span key={j} className="text-amber-400 text-base">★</span>
                     ))}
                   </div>
                   <p className="text-ink text-sm leading-relaxed mb-5">«{r.text}»</p>
@@ -396,7 +359,7 @@ export default function Index() {
                       <p className="font-semibold text-sm text-ink">{r.name}</p>
                       <p className="text-xs text-ink-light">{r.city}</p>
                     </div>
-                    <span className="bg-surface text-ink-soft text-xs px-3 py-1 rounded-full font-inter">{r.tag}</span>
+                    <span className="bg-surface-100 text-ink-soft text-xs px-3 py-1 rounded-full font-inter border border-border">{r.tag}</span>
                   </div>
                 </div>
               ))}
@@ -405,48 +368,30 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── PROMO ── */}
+      {/* ─── PROMO ─── */}
       <section id="promo" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-5">
-          <div ref={secPromo} className="section-fade">
+          <div ref={rPromo} className="section-fade">
             <div className="mb-12">
-              <Tag>Акции</Tag>
-              <H2>Актуальные предложения</H2>
+              <SectionLabel>Актуальные предложения</SectionLabel>
+              <H2>Акции и скидки</H2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {[
-                {
-                  tag: "До 28 февраля",
-                  title: "−15% на кухни",
-                  desc: "Скидка на весь заказ при оформлении до конца месяца. Включая монтаж.",
-                  cta: "Заказать кухню",
-                  dark: true,
-                },
-                {
-                  tag: "Постоянно",
-                  title: "Рассрочка 0%",
-                  desc: "На 6 или 12 месяцев без переплат. Первый взнос от 50%.",
-                  cta: "Оформить рассрочку",
-                  dark: false,
-                },
-                {
-                  tag: "От 150 000 ₽",
-                  title: "Бесплатный 3D-проект",
-                  desc: "Дизайнер сделает визуализацию вашего интерьера совершенно бесплатно.",
-                  cta: "Получить проект",
-                  dark: false,
-                },
-              ].map((p, i) => (
-                <div key={i} className={`rounded-2xl p-7 flex flex-col gap-4 ${p.dark ? "bg-ink text-white" : "bg-surface"}`}>
-                  <span className={`text-[11px] font-inter uppercase tracking-widest ${p.dark ? "text-white/50" : "text-ink-light"}`}>{p.tag}</span>
-                  <h3 className={`font-golos font-bold text-2xl ${p.dark ? "text-white" : "text-ink"}`}>{p.title}</h3>
-                  <p className={`text-sm leading-relaxed flex-1 ${p.dark ? "text-white/70" : "text-ink-soft"}`}>{p.desc}</p>
+                { tag:"До 28 февраля", title:"−15% на кухни",    desc:"Скидка на весь заказ при оформлении до конца месяца. Включая монтаж.", cta:"Заказать кухню",    accent:true },
+                { tag:"Постоянно",     title:"Рассрочка 0%",     desc:"На 6 или 12 месяцев без переплат. Первый взнос от 50%.",              cta:"Оформить рассрочку",accent:false },
+                { tag:"От 150 000 ₽",  title:"Бесплатный 3D",    desc:"Дизайнер сделает визуализацию интерьера совершенно бесплатно.",       cta:"Получить проект",  accent:false },
+              ].map((p,i) => (
+                <div key={i} className={`rounded-2xl p-7 flex flex-col gap-4 border ${
+                  p.accent ? "bg-terra/8 border-terra/25" : "bg-white border-border shadow-card"
+                }`}>
+                  <span className={`text-[11px] font-inter uppercase tracking-widest ${p.accent ? "text-terra" : "text-ink-light"}`}>{p.tag}</span>
+                  <h3 className="font-golos font-bold text-2xl text-ink">{p.title}</h3>
+                  <p className="text-sm leading-relaxed flex-1 text-ink-soft">{p.desc}</p>
                   <button onClick={() => go("contact")}
                     className={`px-5 py-3 rounded-xl text-sm font-semibold transition-colors ${
-                      p.dark ? "bg-white text-ink hover:bg-surface" : "bg-ink text-white hover:bg-ink-soft"
-                    }`}>
-                    {p.cta}
-                  </button>
+                      p.accent ? "bg-ink text-white hover:bg-ink-soft shadow-btn" : "bg-surface text-ink hover:bg-surface-200 border border-border"
+                    }`}>{p.cta}</button>
                 </div>
               ))}
             </div>
@@ -454,25 +399,25 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── FAQ ── */}
-      <section id="faq" className="py-20 bg-surface">
+      {/* ─── FAQ ─── */}
+      <section id="faq" className="py-20 bg-warm-200">
         <div className="max-w-3xl mx-auto px-5">
-          <div ref={secFaq} className="section-fade">
+          <div ref={rFaq} className="section-fade">
             <div className="text-center mb-12">
-              <Tag>Вопросы</Tag>
-              <H2>Часто спрашивают</H2>
+              <SectionLabel>Вопросы и ответы</SectionLabel>
+              <H2 center>Часто спрашивают</H2>
             </div>
             <div className="flex flex-col gap-3">
               {FAQ.map((item, i) => (
-                <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-card">
-                  <button
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full flex items-center justify-between p-5 text-left gap-4 hover:bg-surface-100 transition-colors"
-                  >
+                <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-card border border-border/60">
+                  <button onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    className="w-full flex items-center justify-between p-5 text-left gap-4 hover:bg-surface-100 transition-colors">
                     <span className="text-sm font-semibold text-ink">{item.q}</span>
-                    <div className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-colors ${openFaq === i ? "bg-ink" : "bg-surface"}`}>
-                      <Icon name={openFaq === i ? "Minus" : "Plus"} size={14}
-                        className={openFaq === i ? "text-white" : "text-ink"} />
+                    <div className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-colors ${
+                      openFaq === i ? "bg-terra" : "bg-surface"
+                    }`}>
+                      <Icon name={openFaq === i ? "Minus" : "Plus"} size={13}
+                        className={openFaq === i ? "text-white" : "text-ink-soft"} />
                     </div>
                   </button>
                   {openFaq === i && (
@@ -487,107 +432,84 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── CONTACT ── */}
+      {/* ─── CONTACT ─── */}
       <section id="contact" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-5">
-          <div ref={secCont} className="section-fade">
+          <div ref={rCont} className="section-fade">
             <div className="grid md:grid-cols-2 gap-14">
-              {/* Form */}
               <div>
-                <Tag>Связаться</Tag>
-                <H2>Оставить заявку</H2>
+                <SectionLabel>Оставить заявку</SectionLabel>
+                <H2>Свяжитесь с нами</H2>
                 <p className="text-ink-soft text-sm font-inter mt-3 mb-8 leading-relaxed">
-                  Менеджер перезвонит в течение 30 минут, ответит на вопросы и предложит удобное время для замера.
+                  Менеджер перезвонит в течение 30 минут, ответит на вопросы и предложит удобное время замера.
                 </p>
-                <form
-                  onSubmit={e => {
-                    e.preventDefault();
-                    alert("Заявка отправлена! Скоро перезвоним.");
-                    setForm({ name: "", phone: "", msg: "" });
-                  }}
-                  className="flex flex-col gap-4"
-                >
+                <form onSubmit={e => {
+                  e.preventDefault();
+                  alert("Заявка отправлена! Мы скоро перезвоним.");
+                  setForm({ name:"", phone:"", msg:"" });
+                }} className="flex flex-col gap-4">
                   {[
-                    { label: "Ваше имя", key: "name", ph: "Александр", type: "text" },
-                    { label: "Телефон", key: "phone", ph: "+7 (999) 000-00-00", type: "tel" },
+                    { label:"Ваше имя", key:"name",  ph:"Александр",        type:"text" },
+                    { label:"Телефон",  key:"phone", ph:"+7 (999) 000-00-00",type:"tel" },
                   ].map(f => (
                     <div key={f.key}>
                       <label className="text-xs text-ink-light font-inter uppercase tracking-widest mb-1.5 block">{f.label}</label>
-                      <input
-                        type={f.type}
-                        required
-                        placeholder={f.ph}
-                        value={form[f.key as "name" | "phone"]}
+                      <input type={f.type} required placeholder={f.ph}
+                        value={form[f.key as "name"|"phone"]}
                         onChange={e => setForm({ ...form, [f.key]: e.target.value })}
-                        className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-sm text-ink placeholder:text-ink-light focus:outline-none focus:ring-2 focus:ring-ink/20 transition"
-                      />
+                        className="w-full bg-white border border-border rounded-xl px-4 py-3 text-sm text-ink placeholder:text-ink-light focus:outline-none focus:ring-2 focus:ring-terra/30 transition shadow-sm" />
                     </div>
                   ))}
                   <div>
                     <label className="text-xs text-ink-light font-inter uppercase tracking-widest mb-1.5 block">Описание проекта</label>
-                    <textarea
-                      rows={4}
-                      placeholder="Что хотите заказать, размеры помещения, пожелания по стилю..."
-                      value={form.msg}
-                      onChange={e => setForm({ ...form, msg: e.target.value })}
-                      className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-sm text-ink placeholder:text-ink-light focus:outline-none focus:ring-2 focus:ring-ink/20 transition resize-none"
-                    />
+                    <textarea rows={4} placeholder="Что хотите заказать, размеры, пожелания..."
+                      value={form.msg} onChange={e => setForm({ ...form, msg: e.target.value })}
+                      className="w-full bg-white border border-border rounded-xl px-4 py-3 text-sm text-ink placeholder:text-ink-light focus:outline-none focus:ring-2 focus:ring-terra/30 transition resize-none shadow-sm" />
                   </div>
                   <button type="submit"
                     className="bg-ink text-white py-4 rounded-xl font-semibold text-sm hover:bg-ink-soft transition-colors shadow-btn">
                     Отправить заявку
                   </button>
-                  <p className="text-[11px] text-ink-light">
-                    Нажимая кнопку, вы соглашаетесь на обработку персональных данных
-                  </p>
+                  <p className="text-[11px] text-ink-light">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
                 </form>
               </div>
 
-              {/* Contacts */}
-              <div className="flex flex-col gap-6 mt-8 md:mt-14">
-                <div className="grid grid-cols-1 gap-4">
-                  {[
-                    { icon: "Phone", label: "Телефон", val: "+7 (495) 000-00-00" },
-                    { icon: "Mail", label: "Email", val: "info@mebelex.ru" },
-                    { icon: "MapPin", label: "Адрес", val: "Москва, ул. Производственная, 1" },
-                    { icon: "Clock", label: "Режим работы", val: "Пн–Сб 9:00–20:00, Вс 10:00–18:00" },
-                  ].map(c => (
-                    <div key={c.label} className="flex gap-4 items-start bg-surface rounded-2xl p-4 shadow-card">
-                      <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-card shrink-0">
-                        <Icon name={c.icon} size={16} className="text-ink" />
-                      </div>
-                      <div>
-                        <p className="text-[11px] text-ink-light font-inter uppercase tracking-widest mb-0.5">{c.label}</p>
-                        <p className="text-sm font-semibold text-ink">{c.val}</p>
-                      </div>
+              <div className="flex flex-col gap-5 md:mt-16">
+                {[
+                  { icon:"Phone",  label:"Телефон",       val:"+7 (495) 000-00-00" },
+                  { icon:"Mail",   label:"Email",          val:"info@mebelex.ru" },
+                  { icon:"MapPin", label:"Адрес",          val:"Москва, ул. Производственная, 1" },
+                  { icon:"Clock",  label:"Режим работы",   val:"Пн–Сб 9:00–20:00 · Вс 10:00–18:00" },
+                ].map(c => (
+                  <div key={c.label} className="flex gap-4 items-start bg-white rounded-2xl p-4 shadow-card border border-border/60">
+                    <div className="w-10 h-10 bg-surface-100 rounded-xl flex items-center justify-center shrink-0">
+                      <Icon name={c.icon} size={17} className="text-terra" />
                     </div>
-                  ))}
-                </div>
+                    <div>
+                      <p className="text-[11px] text-ink-light font-inter uppercase tracking-widest mb-0.5">{c.label}</p>
+                      <p className="text-sm font-semibold text-ink">{c.val}</p>
+                    </div>
+                  </div>
+                ))}
 
                 <div>
                   <p className="text-xs text-ink-light font-inter uppercase tracking-widest mb-3">Мы в соцсетях</p>
                   <div className="flex gap-3">
-                    {[
-                      { icon: "MessageCircle", label: "VK" },
-                      { icon: "Send", label: "Telegram" },
-                      { icon: "Share2", label: "Instagram" },
-                      { icon: "Youtube", label: "YouTube" },
-                    ].map(s => (
+                    {[{icon:"MessageCircle",label:"VK"},{icon:"Send",label:"Telegram"},{icon:"Share2",label:"Instagram"},{icon:"Youtube",label:"YouTube"}].map(s => (
                       <button key={s.label} title={s.label}
-                        className="w-11 h-11 bg-surface rounded-xl flex items-center justify-center hover:bg-surface-200 transition-colors shadow-card group">
-                        <Icon name={s.icon} size={17} className="text-ink-soft group-hover:text-ink transition-colors" />
+                        className="w-11 h-11 bg-white rounded-xl flex items-center justify-center hover:bg-surface-100 transition-colors shadow-card border border-border/60 group">
+                        <Icon name={s.icon} size={17} className="text-ink-soft group-hover:text-terra transition-colors" />
                       </button>
                     ))}
                   </div>
                 </div>
 
-                {/* Online chat */}
-                <div className="bg-ink rounded-2xl p-6 flex items-center justify-between gap-4">
+                <div className="bg-surface rounded-2xl p-6 flex items-center justify-between gap-4 border border-border shadow-card">
                   <div>
-                    <p className="text-white font-semibold text-base mb-1">Онлайн-консультант</p>
-                    <p className="text-white/60 text-xs">Ответим прямо сейчас</p>
+                    <p className="text-ink font-semibold text-base mb-1">Онлайн-консультант</p>
+                    <p className="text-ink-light text-xs">Ответим прямо сейчас</p>
                   </div>
-                  <button className="bg-white text-ink px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-surface transition-colors shrink-0">
+                  <button className="bg-ink text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-ink-soft transition-colors shrink-0">
                     Написать
                   </button>
                 </div>
@@ -597,25 +519,23 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
-      <footer className="bg-surface border-t border-border py-8">
+      {/* ─── FOOTER ─── */}
+      <footer className="bg-warm-200 border-t border-border py-8">
         <div className="max-w-7xl mx-auto px-5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <span className="font-golos font-bold text-lg text-ink">Мебелекс</span>
+          <span className="font-golos font-bold text-xl text-ink">Мебелекс</span>
           <p className="text-xs text-ink-light font-inter">© 2024 Мебелекс. Все права защищены.</p>
           <div className="flex gap-5">
-            {["Политика конфиденциальности", "Оферта"].map(l => (
+            {["Политика конфиденциальности","Оферта"].map(l => (
               <button key={l} className="text-xs text-ink-light hover:text-ink transition-colors font-inter">{l}</button>
             ))}
           </div>
         </div>
       </footer>
 
-      {/* ── Floating CTA ── */}
-      <button
-        onClick={() => go("contact")}
-        className="fixed bottom-6 right-6 z-50 bg-ink text-white w-14 h-14 rounded-2xl flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.2)] hover:bg-ink-soft hover:scale-105 transition-all duration-200"
-        title="Получить расчёт"
-      >
+      {/* ─── Floating CTA ─── */}
+      <button onClick={() => go("contact")}
+        className="fixed bottom-6 right-6 z-50 bg-ink text-white w-14 h-14 rounded-2xl flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.18)] hover:bg-ink-soft hover:scale-105 transition-all duration-200"
+        title="Получить расчёт">
         <Icon name="Phone" size={20} />
       </button>
     </div>

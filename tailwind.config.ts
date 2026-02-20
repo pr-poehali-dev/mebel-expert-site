@@ -31,15 +31,26 @@ export default {
 					foreground: 'hsl(var(--accent-foreground))',
 				},
 				surface: {
-					DEFAULT: '#F5F5F5',
-					100: '#FAFAFA',
-					200: '#EFEFEF',
-					300: '#E5E5E5',
+					DEFAULT: '#F5EFE6',
+					100: '#FAF7F2',
+					200: '#EEE7DC',
+					300: '#E4D9CC',
+				},
+				warm: {
+					50:  '#FFFDF9',
+					100: '#FBF7F0',
+					200: '#F5EFE6',
+					300: '#EDE3D6',
 				},
 				ink: {
-					DEFAULT: '#111111',
-					soft: '#444444',
-					light: '#888888',
+					DEFAULT: '#1C1C2E',
+					soft: '#4A4A62',
+					light: '#8A8A9E',
+				},
+				terra: {
+					DEFAULT: '#C87941',
+					light: '#E09060',
+					dark: '#A05E28',
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
