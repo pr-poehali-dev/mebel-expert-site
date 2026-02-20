@@ -121,13 +121,13 @@ export default function Index() {
   };
 
   return (
-    <div className="bg-white text-ink font-golos min-h-screen overflow-x-hidden">
+    <div className="bg-background text-ink font-golos min-h-screen overflow-x-hidden">
 
       {/* ── NAV ── */}
-      <header className="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur-md border-b border-border">
+      <header className="fixed top-0 inset-x-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-6">
           <a href="#hero" onClick={e => { e.preventDefault(); go("hero"); }}
-            className="font-golos font-bold text-xl tracking-tight text-ink shrink-0">
+            className="font-golos font-bold text-2xl tracking-tight text-ink shrink-0 leading-none">
             Мебелекс
           </a>
 
@@ -152,7 +152,7 @@ export default function Index() {
         </div>
 
         {menuOpen && (
-          <div className="md:hidden bg-white border-t border-border px-5 py-5 flex flex-col gap-4">
+          <div className="md:hidden bg-background border-t border-border px-5 py-5 flex flex-col gap-4">
             {NAV_LINKS.map(([id, label]) => (
               <button key={id} onClick={() => go(id)}
                 className="text-sm text-ink-soft hover:text-ink text-left py-1">
@@ -254,7 +254,7 @@ export default function Index() {
       </section>
 
       {/* ── PORTFOLIO ── */}
-      <section id="portfolio" className="py-20 bg-white">
+      <section id="portfolio" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-5">
           <div ref={secPort} className="section-fade">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
@@ -342,7 +342,7 @@ export default function Index() {
       </section>
 
       {/* ── MATERIALS ── */}
-      <section id="materials" className="py-20 bg-white">
+      <section id="materials" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-5">
           <div ref={secMat} className="section-fade">
             <div className="grid md:grid-cols-2 gap-14 items-start">
@@ -406,7 +406,7 @@ export default function Index() {
       </section>
 
       {/* ── PROMO ── */}
-      <section id="promo" className="py-20 bg-white">
+      <section id="promo" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-5">
           <div ref={secPromo} className="section-fade">
             <div className="mb-12">
@@ -488,7 +488,7 @@ export default function Index() {
       </section>
 
       {/* ── CONTACT ── */}
-      <section id="contact" className="py-20 bg-white">
+      <section id="contact" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-5">
           <div ref={secCont} className="section-fade">
             <div className="grid md:grid-cols-2 gap-14">
