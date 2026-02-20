@@ -179,41 +179,47 @@ export default function Index() {
       </div>
 
       {/* ── HERO ── */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
+      <section id="hero" className="relative min-h-screen flex items-end overflow-hidden">
+        {/* Full-bleed photo */}
         <div className="absolute inset-0">
-          <img src={IMG_HERO} alt="Мебелекс" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/20" />
+          <img src={IMG_HERO} alt="Мебелекс" className="w-full h-full object-cover object-center" />
+          {/* тёмный низ для текста, прозрачный верх */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+          {/* лёгкий синеватый оттенок для глубины */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/30 to-transparent" />
         </div>
 
-        <div ref={secHero} className="section-fade relative z-10 max-w-7xl mx-auto px-5 w-full py-20">
-          <div className="max-w-xl">
-            <span className="inline-block bg-surface text-ink-soft text-xs font-inter uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
+        {/* Контент */}
+        <div ref={secHero} className="section-fade relative z-10 w-full max-w-7xl mx-auto px-5 pb-16 pt-36">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white/80 text-xs font-inter uppercase tracking-widest px-3 py-1.5 rounded-full mb-6 border border-white/20">
+              <span className="w-1.5 h-1.5 bg-green-400 rounded-full" />
               Производство с 2008 года
             </span>
-            <h1 className="font-golos font-bold text-5xl md:text-6xl lg:text-7xl text-ink leading-[1.05] mb-6">
+            <h1 className="font-golos font-bold text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6">
               Мебель точно<br />под ваш<br />
-              <span className="text-ink-soft">интерьер</span>
+              <span className="text-white/60">интерьер</span>
             </h1>
-            <p className="text-ink-soft text-lg font-inter font-light leading-relaxed mb-10 max-w-md">
+            <p className="text-white/70 text-lg font-inter font-light leading-relaxed mb-10 max-w-lg">
               Проектируем и производим кухни, шкафы, гостиные и спальни по индивидуальным размерам. Точность ЧПУ-станков и опыт 15 лет.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <button onClick={() => go("contact")}
-                className="bg-ink text-white px-7 py-4 rounded-xl font-semibold text-sm hover:bg-ink-soft transition-colors shadow-btn">
+                className="bg-white text-ink px-7 py-4 rounded-xl font-semibold text-sm hover:bg-surface transition-colors shadow-btn">
                 Рассчитать стоимость
               </button>
               <button onClick={() => go("portfolio")}
-                className="border border-border bg-white text-ink px-7 py-4 rounded-xl font-semibold text-sm hover:bg-surface transition-colors">
+                className="border border-white/30 bg-white/10 backdrop-blur-sm text-white px-7 py-4 rounded-xl font-semibold text-sm hover:bg-white/20 transition-colors">
                 Смотреть работы
               </button>
             </div>
 
             {/* Stats */}
-            <div className="flex gap-10 mt-14 pt-8 border-t border-border">
+            <div className="flex gap-10 mt-14 pt-8 border-t border-white/20">
               {[["500+", "проектов"], ["15", "лет опыта"], ["98%", "довольны"]].map(([n, l]) => (
                 <div key={l}>
-                  <div className="text-3xl font-golos font-bold text-ink">{n}</div>
-                  <div className="text-xs text-ink-light uppercase tracking-wider mt-0.5 font-inter">{l}</div>
+                  <div className="text-3xl font-golos font-bold text-white">{n}</div>
+                  <div className="text-xs text-white/50 uppercase tracking-wider mt-0.5 font-inter">{l}</div>
                 </div>
               ))}
             </div>
@@ -221,7 +227,7 @@ export default function Index() {
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <Icon name="ChevronDown" size={20} className="text-ink-light" />
+          <Icon name="ChevronDown" size={20} className="text-white/50" />
         </div>
       </section>
 
