@@ -75,7 +75,7 @@ function useFade() {
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <p className="text-terra text-xs font-inter uppercase tracking-[0.2em] mb-2">{children}</p>;
+  return <p className="text-ink-light text-xs font-inter uppercase tracking-[0.25em] mb-2">{children}</p>;
 }
 
 function H2({ children, center = false }: { children: React.ReactNode; center?: boolean }) {
@@ -130,7 +130,7 @@ export default function Index() {
           </button>
         </div>
         {menuOpen && (
-          <div className="md:hidden bg-warm-50 border-t border-border px-5 py-5 flex flex-col gap-3">
+          <div className="md:hidden bg-surface-100 border-t border-border px-5 py-5 flex flex-col gap-3">
             {NAV_LINKS.map(([id, label]) => (
               <button key={id} onClick={() => go(id)}
                 className="text-sm text-ink-soft hover:text-ink text-left py-1">{label}</button>
@@ -147,7 +147,7 @@ export default function Index() {
       <div className="fixed top-16 inset-x-0 z-40 h-8 bg-surface-100 border-b border-border flex items-center overflow-hidden">
         <div className="flex animate-slide-left whitespace-nowrap">
           {[...TICKER, ...TICKER].map((t, i) => (
-            <span key={i} className="text-[11px] text-terra uppercase tracking-widest mx-8 font-inter">· {t}</span>
+            <span key={i} className="text-[11px] text-ink-light uppercase tracking-widest mx-8 font-inter">· {t}</span>
           ))}
         </div>
       </div>
@@ -170,7 +170,7 @@ export default function Index() {
             </span>
             <h1 className="font-golos font-bold text-5xl md:text-6xl lg:text-[4.25rem] text-ink leading-[1.05] mb-5">
               Мебель<br />по вашему<br />
-              <span className="text-terra">проекту</span>
+              <span className="text-ink-soft">проекту</span>
             </h1>
             <p className="text-ink-soft text-lg font-inter font-light leading-relaxed mb-10 max-w-md">
               Кухни, шкафы, гостиные и спальни точно по вашим размерам. Современное ЧПУ-производство и 15 лет опыта.
@@ -213,7 +213,7 @@ export default function Index() {
             ].map(item => (
               <div key={item.title} className="bg-white rounded-2xl p-5 shadow-card hover-lift">
                 <div className="w-10 h-10 bg-surface-100 rounded-xl flex items-center justify-center mb-4">
-                  <Icon name={item.icon} size={20} className="text-terra" />
+                  <Icon name={item.icon} size={20} className="text-ink-soft" />
                 </div>
                 <p className="font-semibold text-sm text-ink mb-1">{item.title}</p>
                 <p className="text-xs text-ink-light leading-relaxed">{item.desc}</p>
@@ -249,7 +249,7 @@ export default function Index() {
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-5">
-                    <span className="text-[11px] font-inter uppercase tracking-widest text-terra">{item.cat}</span>
+                    <span className="text-[11px] font-inter uppercase tracking-widest text-ink-light">{item.cat}</span>
                     <h3 className="font-golos font-semibold text-base text-ink mt-1 mb-1">{item.title}</h3>
                     <p className="text-xs text-ink-light mb-3 leading-relaxed">{item.sub}</p>
                     <p className="text-sm font-semibold text-ink">{item.price}</p>
@@ -273,7 +273,7 @@ export default function Index() {
               {STEPS.map((s, i) => (
                 <div key={s.n} className="relative bg-white rounded-2xl p-6 shadow-card flex flex-col gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 bg-terra rounded-xl flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 bg-ink rounded-xl flex items-center justify-center shrink-0">
                       <Icon name={s.icon} size={16} className="text-white" />
                     </div>
                     <span className="text-xs text-ink-light font-inter">Шаг {s.n}</span>
@@ -291,7 +291,7 @@ export default function Index() {
             {/* CTA Banner */}
             <div className="mt-10 bg-white rounded-2xl p-8 md:p-10 shadow-card flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-border">
               <div>
-                <p className="text-terra text-xs font-inter uppercase tracking-widest mb-2">Специальное предложение</p>
+                <p className="text-ink-light text-xs font-inter uppercase tracking-widest mb-2">Специальное предложение</p>
                 <h3 className="text-ink font-golos font-bold text-2xl">Бесплатная 3D-визуализация</h3>
                 <p className="text-ink-light text-sm mt-1">при заказе от 150 000 ₽</p>
               </div>
@@ -323,7 +323,7 @@ export default function Index() {
                 {MATERIALS.map(m => (
                   <div key={m.title} className="flex gap-4 items-start bg-white rounded-2xl p-5 shadow-card hover-lift border border-border/60">
                     <div className="w-10 h-10 bg-surface-100 rounded-xl flex items-center justify-center shrink-0">
-                      <Icon name={m.icon} size={18} className="text-terra" />
+                      <Icon name={m.icon} size={18} className="text-ink-soft" />
                     </div>
                     <div>
                       <p className="font-golos font-semibold text-sm text-ink mb-0.5">{m.title}</p>
@@ -383,9 +383,9 @@ export default function Index() {
                 { tag:"От 150 000 ₽",  title:"Бесплатный 3D",    desc:"Дизайнер сделает визуализацию интерьера совершенно бесплатно.",       cta:"Получить проект",  accent:false },
               ].map((p,i) => (
                 <div key={i} className={`rounded-2xl p-7 flex flex-col gap-4 border ${
-                  p.accent ? "bg-terra/8 border-terra/25" : "bg-white border-border shadow-card"
+                  p.accent ? "bg-surface-200 border-surface-300 shadow-card" : "bg-white border-border shadow-card"
                 }`}>
-                  <span className={`text-[11px] font-inter uppercase tracking-widest ${p.accent ? "text-terra" : "text-ink-light"}`}>{p.tag}</span>
+                  <span className="text-[11px] font-inter uppercase tracking-widest text-ink-light">{p.tag}</span>
                   <h3 className="font-golos font-bold text-2xl text-ink">{p.title}</h3>
                   <p className="text-sm leading-relaxed flex-1 text-ink-soft">{p.desc}</p>
                   <button onClick={() => go("contact")}
@@ -414,7 +414,7 @@ export default function Index() {
                     className="w-full flex items-center justify-between p-5 text-left gap-4 hover:bg-surface-100 transition-colors">
                     <span className="text-sm font-semibold text-ink">{item.q}</span>
                     <div className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-colors ${
-                      openFaq === i ? "bg-terra" : "bg-surface"
+                      openFaq === i ? "bg-ink" : "bg-surface"
                     }`}>
                       <Icon name={openFaq === i ? "Minus" : "Plus"} size={13}
                         className={openFaq === i ? "text-white" : "text-ink-soft"} />
@@ -483,7 +483,7 @@ export default function Index() {
                 ].map(c => (
                   <div key={c.label} className="flex gap-4 items-start bg-white rounded-2xl p-4 shadow-card border border-border/60">
                     <div className="w-10 h-10 bg-surface-100 rounded-xl flex items-center justify-center shrink-0">
-                      <Icon name={c.icon} size={17} className="text-terra" />
+                      <Icon name={c.icon} size={17} className="text-ink-soft" />
                     </div>
                     <div>
                       <p className="text-[11px] text-ink-light font-inter uppercase tracking-widest mb-0.5">{c.label}</p>
@@ -498,7 +498,7 @@ export default function Index() {
                     {[{icon:"MessageCircle",label:"VK"},{icon:"Send",label:"Telegram"},{icon:"Share2",label:"Instagram"},{icon:"Youtube",label:"YouTube"}].map(s => (
                       <button key={s.label} title={s.label}
                         className="w-11 h-11 bg-white rounded-xl flex items-center justify-center hover:bg-surface-100 transition-colors shadow-card border border-border/60 group">
-                        <Icon name={s.icon} size={17} className="text-ink-soft group-hover:text-terra transition-colors" />
+                        <Icon name={s.icon} size={17} className="text-ink-soft group-hover:text-ink transition-colors" />
                       </button>
                     ))}
                   </div>

@@ -4,45 +4,44 @@
 
 @layer base {
   :root {
-    /* Тёплый светлый фон — не слепит, не давит */
-    --background: 36 30% 97%;
-    --foreground: 220 20% 12%;
+    --background: 0 0% 97%;
+    --foreground: 0 0% 13%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 12%;
+    --card-foreground: 0 0% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 12%;
+    --popover-foreground: 0 0% 13%;
 
-    --primary: 220 20% 14%;
+    --primary: 0 0% 15%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 36 25% 93%;
-    --secondary-foreground: 220 20% 14%;
+    --secondary: 0 0% 93%;
+    --secondary-foreground: 0 0% 15%;
 
-    --muted: 36 20% 92%;
-    --muted-foreground: 220 10% 48%;
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 48%;
 
-    --accent: 25 80% 58%;
+    --accent: 210 14% 40%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 36 15% 88%;
-    --input: 36 20% 94%;
-    --ring: 220 20% 14%;
+    --border: 0 0% 88%;
+    --input: 0 0% 94%;
+    --ring: 0 0% 15%;
 
     --radius: 0.875rem;
 
-    --sidebar-background: 36 30% 97%;
-    --sidebar-foreground: 220 20% 12%;
-    --sidebar-primary: 220 20% 14%;
+    --sidebar-background: 0 0% 97%;
+    --sidebar-foreground: 0 0% 13%;
+    --sidebar-primary: 0 0% 15%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 36 25% 93%;
-    --sidebar-accent-foreground: 220 20% 14%;
-    --sidebar-border: 36 15% 88%;
-    --sidebar-ring: 220 20% 14%;
+    --sidebar-accent: 0 0% 93%;
+    --sidebar-accent-foreground: 0 0% 15%;
+    --sidebar-border: 0 0% 88%;
+    --sidebar-ring: 0 0% 15%;
   }
 }
 
@@ -87,15 +86,15 @@
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #f5f0e8;
+  background: #f2f2f2;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d0c8b8;
+  background: #d0d0d0;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #b8ad9a;
+  background: #b0b0b0;
 }
 ::selection {
-  background: rgba(200, 150, 80, 0.15);
+  background: rgba(0, 0, 0, 0.08);
 }
